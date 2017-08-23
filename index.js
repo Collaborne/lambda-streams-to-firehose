@@ -27,7 +27,6 @@ var firehose;
 exports.firehose = firehose;
 var kinesis;
 exports.kinesis = kinesis;
-var online = false;
 
 require('./constants');
 
@@ -89,7 +88,6 @@ var deliveryStreamMapping = {
 var start;
 
 function init(callback) {
-    if (!online) {
 	if (!setRegion || setRegion === null || setRegion === "") {
 	    setRegion = "us-east-1";
 	    console.log("Warning: Setting default region " + setRegion);
@@ -133,11 +131,9 @@ function init(callback) {
 		    });
 		}
 
-		online = true;
 		callback(null);
 	    }
 	});
-    }
 }
 exports.init = init;
 
